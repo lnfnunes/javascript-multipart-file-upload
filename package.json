@@ -1,0 +1,23 @@
+{
+  "name": "angular-s3-fileupload-multipart",
+  "version": "1.0.0",
+  "description": "Angular S3 File Upload is a module for the AngularJS framework",
+  "main": "dist/angular-s3-fileupload-multipart.min.js",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-stream": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mvallim/angular-s3-fileupload-multipart.git"
+  },
+  "author": "Marcos Tischer Vallim <tischer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mvallim/angular-s3-fileupload-multipart/issues"
+  }
+}
