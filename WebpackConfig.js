@@ -39,13 +39,7 @@ class WebpackConfig {
       plugins: [
         new webpack.optimize.UglifyJsPlugin({
           include: /\.min\.js$/
-        }),
-        new webpack.BannerPlugin(
-          `/*\n` +
-          ` ${this.name} v${this.version}\n` +
-          ` ${this.homepage}\n` +
-          `*/\n`
-        )
+        })
       ]
     };
   }

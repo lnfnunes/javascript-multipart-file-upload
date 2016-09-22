@@ -1,11 +1,13 @@
 'use strict';
 
-require('./services/S3Enumerable');
-require('./services/S3Stack');
-require('./services/S3Queue');
-require('./services/S3Object');
+require('./commons/collections/S3Enumerable');
+require('./commons/collections/S3Stack');
+require('./commons/collections/S3Queue');
+require('./commons/S3Object');
 
 var CONFIG = require('./config.json');
+
+var options = require('./values/options.js');
 
 angular
     .module(CONFIG.name, [])

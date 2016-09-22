@@ -1,11 +1,11 @@
 'use strict';
 
-function S3Enumerable(){
+window.S3Enumerable = function(){
   Object.call(this);
   this.array = new Array();
 }
 
-S3Enumerable.prototype = Object.create(Object.prototype, {
+window.S3Enumerable.prototype = Object.create(Object.prototype, {
 
   constructor: S3Enumerable,
 

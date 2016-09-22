@@ -1,10 +1,3 @@
-/*!
- * /*
- *  angular-s3-fileupload-multipart v1.0.0
- *  https://github.com/mvallim/angular-s3-fileupload-multipart
- * */
- * 
- */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -70,6 +63,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var CONFIG = __webpack_require__(5);
 	
+	var options = __webpack_require__(6);
+	
 	angular.module(CONFIG.name, []).value('s3FileUploadMultipartOptions', options).run([function () {}]);
 
 /***/ },
@@ -78,12 +73,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	function S3Enumerable() {
+	window.S3Enumerable = function () {
 	  Object.call(this);
 	  this.array = new Array();
-	}
+	};
 	
-	S3Enumerable.prototype = Object.create(Object.prototype, {
+	window.S3Enumerable.prototype = Object.create(Object.prototype, {
 	
 	  constructor: S3Enumerable,
 	
@@ -252,6 +247,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = {
 		"name": "angularS3FileUploadMultipart"
 	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	{}
 
 /***/ }
 /******/ ])

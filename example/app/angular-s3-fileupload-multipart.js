@@ -1,0 +1,1 @@
+../../dist/angular-s3-fileupload-multipart.js
