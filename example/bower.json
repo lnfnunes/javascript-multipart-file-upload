@@ -1,0 +1,21 @@
+{
+  "name": "app-angular-s3-fileupload-multipart",
+  "homepage": "https://github.com/mvallim/angular-s3-fileupload-multipart",
+  "description": "Angular S3 File Upload is a module for the AngularJS framework",
+  "main": "index.html",
+  "authors": [
+    "Marcos Tischer Vallim <tischer@gmail.com>"
+  ],
+  "dependencies": {
+    "angular": "~1.4"
+  },
+  "license": "GPL3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
