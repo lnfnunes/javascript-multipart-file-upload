@@ -1,29 +1,26 @@
 'use strict';
 
-import CONFIG from './../config.json';
+function S3Stack(){
+  S3Enumerable.call(this);
+}
 
-let {
-    extend
-    } = angular;
+S3Stack.prototype = Object.create(S3Enumerable.prototype, {
 
-export default function __identity() {
+  constructor: S3Stack,
 
-  class S3Stack extends S3Enumerable {
-
-    constructor() {
-      extend(this, options);
-    }
-
-    push(obj) {
+  push: {
+    value : function(obj) {
       this.elements.push(obj);
-    }
+    },
+    configurable: false
+  },
 
-    pop() {
+  pop: {
+    value : function(obj) {
       if(this.empty) return null;
-      this.elements.pop();
-    }
+      this.elements.pop(obj);
+    },
+    configurable: false
   }
 
-  return new S3Stack();
-
-}
+});

@@ -1,35 +1,34 @@
 'use strict';
 
-import CONFIG from './../config.json';
+function S3Queue(){
+  S3Enumerable.call(this);
+}
 
-let {
-    extend
-    } = angular;
+S3Queue.prototype = Object.create(S3Enumerable.prototype, {
 
-export default function __identity() {
+  constructor: S3Queue,
 
-  class S3Queue extends S3Enumerable {
-
-    constructor() {
-      extend(this, options);
-    }
-
-    enqueue(obj) {
+  enqueue: {
+    value : function(obj) {
       this.elements.push(obj);
-    }
+    },
+    configurable: false
+  },
 
-    dequeue() {
+  dequeue: {
+    value: function(obj) {
       if(this.empty) return null;
       return this.elements.shift();
-    }
+    },
+    configurable: false
+  },
 
-    peek() {
+  peek: {
+    value: function() {
       if(this.empty) return null;
       return this.elements[0];
-    }
-
+    },
+    configurable: false
   }
 
-  return new S3Queue();
-
-}
+});

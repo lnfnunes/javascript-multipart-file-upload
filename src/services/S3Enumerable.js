@@ -1,50 +1,43 @@
 'use strict';
 
-import CONFIG from './../config.json';
+function S3Enumerable(){
+  Object.call(this);
+  this.array = new Array();
+}
 
-let {
-    extend
-    } = angular;
+S3Enumerable.prototype = Object.create(Object.prototype, {
 
-export default function __identity() {
+  constructor: S3Enumerable,
 
-  class S3Enumerable {
-    
-    constructor() {
-      extend(this, options);
-
+  clear: {
+    value : function(obj) {
       this.array = new Array();
-    }
+    },
+    configurable: false
+  },
 
-    clear() {
-      this.array = new Array();
-    }
+  elements: {
+    get: function() { 
+      return this.array; 
+    },
+    enumerable: true,
+    configurable: false
+  },
 
-    elements: {
-      get: function() { 
-        return this.array; 
-      },
-      enumerable: true,
-      configurable: false
-    }
+  length: {
+    get: function() { 
+      return this.array.length; 
+    },
+    enumerable: false,
+    configurable: false
+  },
 
-    length: {
-      get: function() { 
-        return this.array.length; 
-      },
-      enumerable: false,
-      configurable: false
-    }
-
-    empty: {
-      get: function() { 
-        return this.array.length === 0; 
-      },
-      enumerable: false,
-      configurable: false
-    }
+  empty: {
+    get: function() { 
+      return this.array.length === 0; 
+    },
+    enumerable: false,
+    configurable: false
   }
 
-  return new S3Enumerable();
-
-}    
+});

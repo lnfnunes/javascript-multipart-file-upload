@@ -14,7 +14,6 @@ let config = new WebpackConfig(descriptor, {
   dist: './dist/'
 });
 
-
 gulp.task(
   `${config.name}/build`,
   function () {

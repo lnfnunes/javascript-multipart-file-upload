@@ -12,7 +12,7 @@
     "aws"
   ],
   "dependencies": {
-    "angular": "^1.5.8"
+    "angular": "~1.4"
   },
   "authors": [
     "Marcos Tischer Vallim <tischer@gmail.com>"
