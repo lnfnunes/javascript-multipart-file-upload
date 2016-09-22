@@ -1,36 +1,40 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-require('./S3Enumerable');
+  angular.module('s3queue', ["s3enumerable"])
+         .factory('s3queue', function() { return new S3Queue(); });
 
-function S3Queue(){
-  S3Enumerable.call(this);
-}
+  function S3Queue(){
+    S3Enumerable.call(this);
+  };
 
-S3Queue.prototype = Object.create(S3Enumerable.prototype, {
+  S3Queue.prototype = Object.create(S3Enumerable.prototype, {
 
-  constructor: S3Queue,
+    constructor: S3Queue,
 
-  enqueue: {
-    value : function(obj) {
-      this.elements.push(obj);
+    enqueue: {
+      value : function(obj) {
+        this.elements.push(obj);
+      },
+      configurable: false
     },
-    configurable: false
-  },
 
-  dequeue: {
-    value: function(obj) {
-      if(this.empty) return null;
-      return this.elements.shift();
+    dequeue: {
+      value: function(obj) {
+        if(this.empty) return null;
+        return this.elements.shift();
+      },
+      configurable: false
     },
-    configurable: false
-  },
 
-  peek: {
-    value: function() {
-      if(this.empty) return null;
-      return this.elements[0];
-    },
-    configurable: false
-  }
+    peek: {
+      value: function() {
+        if(this.empty) return null;
+        return this.elements[0];
+      },
+      configurable: false
+    }
 
-});
+  });
+
+})(window.angular);

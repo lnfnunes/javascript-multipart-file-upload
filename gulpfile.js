@@ -1,25 +1,35 @@
 'use strict';
 
-// https://github.com/gulpjs/gulp/blob/master/docs/README.md
-let gulp = require('gulp');
-// https://github.com/shama/webpack-stream
-let webpackStream = require('webpack-stream');
+let clean = require('gulp-clean');
 
-let WebpackConfig = require('./WebpackConfig');
+let uglify = require('gulp-uglifyjs');
+
+let gulp = require('gulp');
+
 let descriptor = require('./package.json');
 
+let config = require('./package.json');
 
-let config = new WebpackConfig(descriptor, {
-  src: './src/',
+config.path = {
+  src: './src/**/*.js',
   dist: './dist/'
-});
+};
 
 gulp.task(
-  `${config.name}/build`,
+  `${config.name}/clean`,
+  function () {
+    return gulp
+      .src(config.path.dist)
+      .pipe(clean());
+  }
+);
+
+gulp.task(
+  `${config.name}/build`, [`${config.name}/clean`],
   function () {
     return gulp
       .src(config.path.src)
-      .pipe(webpackStream(config.get()))
+      .pipe(uglify(descriptor.name+'.js'))
       .pipe(gulp.dest(config.path.dist));
   }
 );

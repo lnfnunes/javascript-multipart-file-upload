@@ -1,43 +1,48 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-window.S3Enumerable = function(){
-  Object.call(this);
-  this.array = new Array();
-}
+  angular.module('s3enumerable', [])
+         .factory('s3enumerable', function() { return new S3Enumerable(); });
 
-window.S3Enumerable.prototype = Object.create(Object.prototype, {
+  function S3Enumerable() {
+    Object.call(this);
+    this.array = new Array();
+  };
 
-  constructor: S3Enumerable,
+  S3Enumerable.prototype = Object.create(Object.prototype, {
 
-  clear: {
-    value : function(obj) {
-      this.array = new Array();
+    constructor: S3Enumerable,
+
+    clear: {
+      value : function(obj) {
+        this.array = new Array();
+      },
+      configurable: false
     },
-    configurable: false
-  },
 
-  elements: {
-    get: function() { 
-      return this.array; 
+    elements: {
+      get: function() { 
+        return this.array; 
+      },
+      enumerable: true,
+      configurable: false
     },
-    enumerable: true,
-    configurable: false
-  },
 
-  length: {
-    get: function() { 
-      return this.array.length; 
+    length: {
+      get: function() { 
+        return this.array.length; 
+      },
+      enumerable: false,
+      configurable: false
     },
-    enumerable: false,
-    configurable: false
-  },
 
-  empty: {
-    get: function() { 
-      return this.array.length === 0; 
-    },
-    enumerable: false,
-    configurable: false
-  }
+    empty: {
+      get: function() { 
+        return this.array.length === 0; 
+      },
+      enumerable: false,
+      configurable: false
+    }
+  });
 
-});
+})(window.angular);
