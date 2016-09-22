@@ -1,5 +1,7 @@
 'use strict';
 
+require('./S3Enumerable');
+
 function S3Stack(){
   S3Enumerable.call(this);
 }
