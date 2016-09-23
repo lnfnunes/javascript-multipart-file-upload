@@ -2,47 +2,50 @@
   'use strict';
 
   angular.module('s3enumerable', [])
-         .factory('s3enumerable', function() { return new S3Enumerable(); });
+    .factory('s3enumerable', function() { 
 
-  function S3Enumerable() {
-    Object.call(this);
-    this.array = new Array();
-  };
-
-  S3Enumerable.prototype = Object.create(Object.prototype, {
-
-    constructor: S3Enumerable,
-
-    clear: {
-      value : function(obj) {
+      function S3Enumerable() {
+        Object.call(this);
         this.array = new Array();
-      },
-      configurable: false
-    },
+      };
 
-    elements: {
-      get: function() { 
-        return this.array; 
-      },
-      enumerable: true,
-      configurable: false
-    },
+      S3Enumerable.prototype = Object.create(Object.prototype, {
 
-    length: {
-      get: function() { 
-        return this.array.length; 
-      },
-      enumerable: false,
-      configurable: false
-    },
+        constructor: S3Enumerable,
 
-    empty: {
-      get: function() { 
-        return this.array.length === 0; 
-      },
-      enumerable: false,
-      configurable: false
-    }
-  });
+        clear: {
+          value : function(obj) {
+            this.array = new Array();
+          },
+          configurable: false
+        },
+
+        elements: {
+          get: function() { 
+            return this.array; 
+          },
+          enumerable: true,
+          configurable: false
+        },
+
+        length: {
+          get: function() { 
+            return this.array.length; 
+          },
+          enumerable: false,
+          configurable: false
+        },
+
+        empty: {
+          get: function() { 
+            return this.array.length === 0; 
+          },
+          enumerable: false,
+          configurable: false
+        }
+      });
+        
+      return new S3Enumerable();
+    });
 
 })(window.angular);

@@ -1,46 +1,55 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-function S3Object() {
-  Object.call(this);
+  angular.module('s3object', [])
+    .factory('s3object', function() { 
 
-  this.init();
-  this.addEvents();
-  this.addListeners();
-}
+      function S3Object() {
+        Object.call(this);
 
-S3Object.prototype = Object.create(Object.prototype, {
+        this.init();
+        this.addEvents();
+        this.addListeners();
+      };
 
-  constructor: S3Object,
+      S3Object.prototype = Object.create(Object.prototype, {
 
-  init: {
-    value: function() { },
-    enumerable: false,
-    configurable: true, 
-    writable: false
-  },
+        constructor: S3Object,
 
-  addEvents: {
-    value: function() { },
-    enumerable: false,
-    configurable: true, 
-    writable: false
-  },
+        init: {
+          value: function() { },
+          enumerable: false,
+          configurable: true, 
+          writable: false
+        },
 
-  addListeners: {
-    value: function() { },
-    enumerable: false,
-    configurable: true, 
-    writable: false
-  },
+        addEvents: {
+          value: function() { },
+          enumerable: false,
+          configurable: true, 
+          writable: false
+        },
 
-  apply: {
-    value: function(obj, properties) {
-      for(var property in properties) {
-        obj[property] = properties[property];
-      }
-    },
-    enumerable: false,
-    configurable: false, 
-    writable: false
-  }  
-});
+        addListeners: {
+          value: function() { },
+          enumerable: false,
+          configurable: true, 
+          writable: false
+        },
+
+        apply: {
+          value: function(obj, properties) {
+            for(var property in properties) {
+              obj[property] = properties[property];
+            }
+          },
+          enumerable: false,
+          configurable: false, 
+          writable: false
+        }  
+      });
+  
+      return new S3Object(); 
+    });
+
+})(window.angular);
