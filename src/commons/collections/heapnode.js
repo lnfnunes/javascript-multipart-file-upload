@@ -98,6 +98,9 @@ HeapNode.prototype = Object.create(Object.prototype, {
 		},
 		set : function(value) {
 			this._value = value;
-		}
+		},
+		enumerable : false,
+		configurable : true,
+		writable : false
 	}
 });
