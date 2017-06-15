@@ -1,2 +1,2 @@
-# angular-s3-fileupload-multipart
-Angular S3 File Upload is a module for the AngularJS framework
+# s3-multipart-file-upload
+Angular S3 Multipart File Upload
