@@ -1,6 +1,6 @@
 function HeapNode(items, value, index) {
 	Object.call(this);
-	
+
 	this._value = value;
 	this._index = index;
 	this._items = items;
@@ -11,7 +11,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 	constructor : HeapNode,
 
 	init : {
-		value : function() { 
+		value : function() {
 		},
 		enumerable : false,
 		configurable : true,
@@ -28,7 +28,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 		configurable : false,
 		writable : false
 	},
-	
+
 	index : {
 		get : function() {
 			return this._index;
@@ -37,66 +37,66 @@ HeapNode.prototype = Object.create(Object.prototype, {
 		configurable : true,
 		writable : false
 	},
-	
-	parent :{
-		get : function(){
-			return this._items[(this._index - 1)/2];
+
+	parent : {
+		get : function() {
+			return this._items[(this._index - 1) / 2];
 		},
 		enumerable : false,
 		configurable : true,
 		writable : false
 	},
-	
+
 	left : {
-		get : function(){
-			return this._items[(this._index *2)+1];
+		get : function() {
+			return this._items[(this._index * 2) + 1];
 		},
 		enumerable : false,
 		configurable : true,
-		writable : false		
+		writable : false
 	},
-	
+
 	right : {
-		get : function(){
-			return this._items[(this._index * 2)+2];
+		get : function() {
+			return this._items[(this._index * 2) + 2];
 		},
 		enumerable : false,
 		configurable : true,
-		writable : false		
+		writable : false
 	},
-	
+
 	hasParent : {
-		get : function(){
+		get : function() {
 			return this._index != 0 && this._parent != null;
 		},
 		enumerable : false,
 		configurable : true,
-		writable : false				
+		writable : false
 	},
-	
+
 	hasLeft : {
-		get : function(){
+		get : function() {
 			return this.left != null;
 		},
 		enumerable : false,
 		configurable : true,
-		writable : false				
+		writable : false
 	},
-	
+
 	hasRight : {
-		get : function(){
+		get : function() {
 			return this.right != null;
 		},
 		enumerable : false,
 		configurable : true,
-		writable : false				
+		writable : false
 	},
-	
+
 	value : {
-		get : function(){
+		get : function() {
 			return this._value;
 		},
-		set : function(value){
+		set : function(value) {
 			this._value = value;
 		}
 	}
