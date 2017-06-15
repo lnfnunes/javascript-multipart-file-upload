@@ -1,3 +1,3 @@
 var CONFIG = { 
-  name: 'angularS3FileUploadMultipart'
+  name: 's3-multipart-file-upload'
 };
