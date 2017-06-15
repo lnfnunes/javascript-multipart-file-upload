@@ -34,7 +34,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this._index;
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -43,7 +43,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this._items[(this._index - 1) / 2];
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -52,7 +52,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this._items[(this._index * 2) + 1];
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -61,7 +61,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this._items[(this._index * 2) + 2];
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -70,7 +70,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this._index != 0 && this._parent != null;
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -79,7 +79,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this.left != null;
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -88,7 +88,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			return this.right != null;
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	},
 
@@ -100,7 +100,7 @@ HeapNode.prototype = Object.create(Object.prototype, {
 			this._value = value;
 		},
 		enumerable : false,
-		configurable : true,
+		configurable : false,
 		writable : false
 	}
 });

@@ -76,6 +76,13 @@ Heap.prototype = Object.create(Object.prototype, {
 		writable : false
 	},
 
+	length : {
+		get : function() {
+			return this._size;
+		},
+		configurable : false
+	},
+	
 	empty : {
 		get : function() {
 			return this._size == 0;

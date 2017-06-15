@@ -51,7 +51,7 @@ Stack.prototype = Object.create(Object.prototype, {
 
 	length : {
 		get : function() {
-			return this.top;
+			return this.dataStore.length;
 		},
 		configurable : false
 	},
