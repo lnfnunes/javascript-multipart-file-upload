@@ -39,21 +39,21 @@ HeapNode.prototype = Object.create(BaseObject.prototype, {
 
 	hasParent : {
 		get : function() {
-			return this._index != 0 && this._parent != null;
+			return this._index != 0 && this.parent != undefined;
 		},
 		configurable : false
 	},
 
 	hasLeft : {
 		get : function() {
-			return this.left != null;
+			return this.left != undefined;
 		},
 		configurable : false
 	},
 
 	hasRight : {
 		get : function() {
-			return this.right != null;
+			return this.right != undefined;
 		},
 		configurable : false
 	},

@@ -26,9 +26,9 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 		value : function() {
 			var value = this._items[0].Value;
 
-			_swap(this._items[0], this._items[Size - 1]);
+			_swap(this._items[0], this._items[this._size - 1]);
 			
-			this._items[this._size - 1] = null;
+			this._items[this._size - 1] = undefined;
 			this._size--;
 
 			if (this._size > 0) {
@@ -44,9 +44,9 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 
 	add : {
 		value : function(value) {
-			var index = Size;
-
-			this._items[Size] = new HeapNode(this._items, num, index);
+			var index = this._size;
+			
+			this._items[this._size] = new HeapNode(this._items, value, index);
 
 			this._size++;
 
@@ -85,7 +85,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 	_heapifyUp : {
 		value : function(index) {
 			var node = this._items[index];
-
+			
 			if (node.hasParent
 					&& this._compare(node.parent.value, node.value) > 0) {
 				this._swap(node.parent, node);
