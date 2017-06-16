@@ -1,0 +1,2 @@
+var stack = new Stack();
+
