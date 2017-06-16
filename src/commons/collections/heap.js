@@ -11,8 +11,8 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 
 	peek : {
 		value : function() {
-			if (this_size == 0) {
-				throw new IndexOutOfRangeException();
+			if (this._size == 0) {
+				return null;
 			}
 
 			return this._items[0].value;
@@ -27,6 +27,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 			var value = this._items[0].Value;
 
 			_swap(this._items[0], this._items[Size - 1]);
+			
 			this._items[this._size - 1] = null;
 			this._size--;
 

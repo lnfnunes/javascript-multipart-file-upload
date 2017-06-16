@@ -1,6 +1,7 @@
 function Stack() {
 	BaseObject.call(this);
-	this.dataStore = [];
+	this._dataStore = [];
+	this._top = 0;
 };
 
 Stack.prototype = Object.create(BaseObject.prototype, {
@@ -9,42 +10,43 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 
 	push : {
 		value : function(element) {
-			this.dataStore[this.top++] = element;
+			this._dataStore[this._top++] = element;
 		},
 		configurable : false
 	},
 
 	pop : {
 		value : function() {
-			return this.dataStore[--this.top];
+			return this._dataStore[--this._top];
 		},
 		configurable : false
 	},
 
 	peek : {
 		value : function() {
-			return this.dataStore[this.top - 1];
+			return this._dataStore[this._top - 1];
 		},
 		configurable : false
 	},
 
 	length : {
 		get : function() {
-			return this.dataStore.length;
+			return this._dataStore.length;
 		},
 		configurable : false
 	},
 	
 	empty : {
 		get : function() {
-			return this.dataStore.length == 0;
+			return this._dataStore.length == 0;
 		},
 		configurable : false
 	},
 
 	clear : {
 		value : function() {
-			this.top = 0;
+			this._top = 0;
+			this._dataStore = [];
 		},
 		configurable : false
 	}

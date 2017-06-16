@@ -1,6 +1,6 @@
 function Queue() {
 	BaseObject.call(this);
-	this.dataStore = [];
+	this._dataStore = [];
 }
 
 Queue.prototype = Object.create(BaseObject.prototype, {
@@ -9,50 +9,49 @@ Queue.prototype = Object.create(BaseObject.prototype, {
 
 	enqueue : {
 		value : function(element) {
-			this.dataStore.push(element);
+			this._dataStore.push(element);
 		},
 		configurable : false
 	},
 
 	dequeue : {
 		value : function() {
-			return this.dataStore.shift();
+			return this._dataStore.shift();
 		},
 		configurable : false
 	},
 
 	front : {
 		value : function() {
-			return this.dataStore[0];
+			return this._dataStore[0];
 		},
 		configurable : false
 	},
 
 	back : {
 		value : function() {
-			return this.dataStore[this.dataStore.length - 1];
+			return this._dataStore[this._dataStore.length - 1];
 		},
 		configurable : false
 	},
 
 	length : {
 		get : function() {
-			return this.dataStore.length;
+			return this._dataStore.length;
 		},
 		configurable : false
 	},
 
 	empty : {
 		get : function() {
-			return this.dataStore.length == 0;
+			return this._dataStore.length == 0;
 		},
 		configurable : false
 	},
 
 	clear : {
 		value : function() {
-			this.top = 0;
-			this.dataStore = [];
+			this._dataStore = [];
 		},
 		configurable : false
 	}
