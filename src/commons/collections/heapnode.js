@@ -1,33 +1,13 @@
 function HeapNode(items, value, index) {
-	Object.call(this);
-
+	BaseObject.call(this);
 	this._value = value;
 	this._index = index;
 	this._items = items;
 }
 
-HeapNode.prototype = Object.create(Object.prototype, {
+HeapNode.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : HeapNode,
-
-	init : {
-		value : function() {
-		},
-		enumerable : false,
-		configurable : true,
-		writable : false
-	},
-
-	apply : {
-		value : function(obj, properties) {
-			for ( var property in properties) {
-				obj[property] = properties[property];
-			}
-		},
-		enumerable : false,
-		configurable : false,
-		writable : false
-	},
 
 	index : {
 		get : function() {

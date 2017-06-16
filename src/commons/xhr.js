@@ -1,10 +1,9 @@
 function XHR(item) {
-	Object.call(this);
-
+	BaseObject.call(this);
 	this.apply(this.item, item);
 }
 
-XHR.prototype = Object.create(Object.prototype, {
+XHR.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : XHR,
 
@@ -24,17 +23,6 @@ XHR.prototype = Object.create(Object.prototype, {
 		enumerable : false,
 		configurable : false,
 		writable : true
-	},
-
-	apply : {
-		value : function(obj, properties) {
-			for ( var property in properties) {
-				obj[property] = properties[property];
-			}
-		},
-		enumerable : false,
-		configurable : false,
-		writable : false
 	},
 
 	item : {

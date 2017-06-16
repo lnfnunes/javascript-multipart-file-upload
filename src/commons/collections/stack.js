@@ -1,33 +1,12 @@
 function Stack() {
-	
-	Object.call(this);
-
+	BaseObject.call(this);
 	this.dataStore = [];
 };
 
-Stack.prototype = Object.create(Object.prototype, {
+Stack.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : Stack,
 
-	init : {
-		value : function() {
-		},
-		enumerable : false,
-		configurable : true,
-		writable : false
-	},
-
-	apply : {
-		value : function(obj, properties) {
-			for ( var property in properties) {
-				obj[property] = properties[property];
-			}
-		},
-		enumerable : false,
-		configurable : false,
-		writable : false
-	},
-	
 	push : {
 		value : function(element) {
 			this.dataStore[this.top++] = element;

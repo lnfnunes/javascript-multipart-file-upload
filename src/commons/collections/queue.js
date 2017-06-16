@@ -1,32 +1,11 @@
 function Queue() {
-
-	Object.call(this);
-
+	BaseObject.call(this);
 	this.dataStore = [];
 }
 
-Queue.prototype = Object.create(Object.prototype, {
+Queue.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : Queue,
-
-	init : {
-		value : function() {
-		},
-		enumerable : false,
-		configurable : true,
-		writable : false
-	},
-
-	apply : {
-		value : function(obj, properties) {
-			for ( var property in properties) {
-				obj[property] = properties[property];
-			}
-		},
-		enumerable : false,
-		configurable : false,
-		writable : false
-	},
 
 	enqueue : {
 		value : function(element) {

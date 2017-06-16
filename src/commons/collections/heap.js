@@ -1,33 +1,13 @@
 function Heap(size, compare) {
-	Object.call(this);
-
+	BaseObject.call(this);
 	this._items = new Array((size * 2) + 10);
 	this._size = 0;
 	this._compare = compare;
 }
 
-Heap.prototype = Object.create(Object.prototype, {
+Heap.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : Heap,
-
-	init : {
-		value : function() {
-		},
-		enumerable : false,
-		configurable : true,
-		writable : false
-	},
-
-	apply : {
-		value : function(obj, properties) {
-			for ( var property in properties) {
-				obj[property] = properties[property];
-			}
-		},
-		enumerable : false,
-		configurable : false,
-		writable : false
-	},
 
 	peek : {
 		value : function() {
@@ -82,7 +62,7 @@ Heap.prototype = Object.create(Object.prototype, {
 		},
 		configurable : false
 	},
-	
+
 	empty : {
 		get : function() {
 			return this._size == 0;
