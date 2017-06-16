@@ -29,7 +29,7 @@ Observable.prototype = Object.create(BaseObject.prototype, {
 
 	unsubscribe : {
 		value : function(fn) {
-			this.handlers = this._handlers.filter(function(item) {
+			this._handlers = this._handlers.filter(function(item) {
 				if (item !== fn) {
 					return item;
 				}
