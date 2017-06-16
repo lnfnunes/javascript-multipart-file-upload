@@ -10,14 +10,16 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 
 	push : {
 		value : function(element) {
-			this._dataStore[this._top++] = element;
+			this._dataStore.push(element);
+			this._top++;
 		},
 		configurable : false
 	},
 
 	pop : {
 		value : function() {
-			return this._dataStore[--this._top];
+			return this._dataStore.pop();
+			this._top--;
 		},
 		configurable : false
 	},

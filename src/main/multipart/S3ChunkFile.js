@@ -1,3 +1,4 @@
+/*
 (function(angular) {
   'use strict';
 
@@ -189,3 +190,4 @@
     .constant('s3chunkfilestate', S3ChunkFileState);
 
 })(window.angular);
+*/

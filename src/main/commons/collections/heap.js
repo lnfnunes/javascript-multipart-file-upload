@@ -68,9 +68,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 		get : function() {
 			return this._size == 0;
 		},
-		enumerable : false,
-		configurable : false,
-		writable : false
+		configurable : false
 	},
 
 	_swap : {
