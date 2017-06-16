@@ -18,7 +18,7 @@ HeapNode.prototype = Object.create(BaseObject.prototype, {
 
 	parent : {
 		get : function() {
-			return this._items[(this._index - 1) / 2];
+			return this._items[(this._index - 1) / 2 >> 0];
 		},
 		configurable : false
 	},

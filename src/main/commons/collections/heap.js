@@ -26,13 +26,13 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 		value : function() {
 			var value = this._items[0].Value;
 
-			_swap(this._items[0], this._items[this._size - 1]);
+			this._swap(this._items[0], this._items[this._size - 1]);
 			
 			this._items[this._size - 1] = undefined;
 			this._size--;
 
 			if (this._size > 0) {
-				_heapifyDown(0);
+				this._heapifyDown(0);
 			}
 
 			return value;
@@ -70,6 +70,14 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 		},
 		configurable : false
 	},
+	
+	clear : {
+		value : function() {
+			this._size = 0;
+			this._items = new Array((this._items.length * 2) + 10);
+		},
+		configurable : false
+	},	
 
 	_swap : {
 		value : function(nodeA, nodeB) {
@@ -86,8 +94,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 		value : function(index) {
 			var node = this._items[index];
 			
-			if (node.hasParent
-					&& this._compare(node.parent.value, node.value) > 0) {
+			if (node.hasParent && this._compare(node.parent.value, node.value) > 0) {
 				this._swap(node.parent, node);
 				this._heapifyUp(node.parent.index);
 			}
@@ -103,22 +110,21 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 
 			var candidate = node;
 
-			if (node.hasLeft
-					&& this._compare(candidate.value, node.left.value) > 0) {
+			if (node.hasLeft && this._compare(candidate.value, node.left.value) > 0) {
 				candidate = node.left;
 			}
 
-			if (node.hasRight
-					&& this._compare(candidate.value, node.right.value) > 0) {
+			if (node.hasRight && this._compare(candidate.value, node.right.value) > 0) {
 				candidate = node.right;
 			}
 
-			if (node == candidate)
+			if (node == candidate){
 				return;
+			}
 
-			_swap(node, candidate);
+			this._swap(node, candidate);
 
-			_heapifyDown(candidate.index);
+			this._heapifyDown(candidate.index);
 		},
 		enumerable : false,
 		configurable : false,
