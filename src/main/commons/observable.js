@@ -1,12 +1,13 @@
 function Observable() {
-	BaseObject.call(this);
-	this._handlers = [];
+	BaseObject.call(this, {
+		_handlers : []
+	});
 }
 
 Observable.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : Observable,
-	
+
 	subscribe : {
 		value : function(fn) {
 			this._handlers.push(fn);
