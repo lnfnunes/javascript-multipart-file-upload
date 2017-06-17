@@ -1,8 +1,9 @@
 function Heap(size, compare) {
-	BaseObject.call(this);
-	this._items = new Array((size * 2) + 10);
-	this._size = 0;
-	this._compare = compare;
+	BaseObject.call(this, {
+		_items : new Array((size * 2) + 10),
+		_size : 0,
+		_compare : compare
+	});
 }
 
 Heap.prototype = Object.create(BaseObject.prototype, {
@@ -27,7 +28,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 			var value = this._items[0].Value;
 
 			this._swap(this._items[0], this._items[this._size - 1]);
-			
+
 			this._items[this._size - 1] = undefined;
 			this._size--;
 
@@ -45,7 +46,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 	add : {
 		value : function(value) {
 			var index = this._size;
-			
+
 			this._items[this._size] = new HeapNode(this._items, value, index);
 
 			this._size++;
@@ -70,14 +71,14 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 		},
 		configurable : false
 	},
-	
+
 	clear : {
 		value : function() {
 			this._size = 0;
 			this._items = new Array((this._items.length * 2) + 10);
 		},
 		configurable : false
-	},	
+	},
 
 	_swap : {
 		value : function(nodeA, nodeB) {
@@ -93,8 +94,9 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 	_heapifyUp : {
 		value : function(index) {
 			var node = this._items[index];
-			
-			if (node.hasParent && this._compare(node.parent.value, node.value) > 0) {
+
+			if (node.hasParent
+					&& this._compare(node.parent.value, node.value) > 0) {
 				this._swap(node.parent, node);
 				this._heapifyUp(node.parent.index);
 			}
@@ -110,15 +112,17 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 
 			var candidate = node;
 
-			if (node.hasLeft && this._compare(candidate.value, node.left.value) > 0) {
+			if (node.hasLeft
+					&& this._compare(candidate.value, node.left.value) > 0) {
 				candidate = node.left;
 			}
 
-			if (node.hasRight && this._compare(candidate.value, node.right.value) > 0) {
+			if (node.hasRight
+					&& this._compare(candidate.value, node.right.value) > 0) {
 				candidate = node.right;
 			}
 
-			if (node == candidate){
+			if (node == candidate) {
 				return;
 			}
 

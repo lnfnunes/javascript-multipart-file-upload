@@ -1,7 +1,8 @@
 function Stack() {
-	BaseObject.call(this);
-	this._dataStore = [];
-	this._top = 0;
+	BaseObject.call(this, {
+		_dataStore : [],
+		_top : 0
+	});
 };
 
 Stack.prototype = Object.create(BaseObject.prototype, {
@@ -37,7 +38,7 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 		},
 		configurable : false
 	},
-	
+
 	empty : {
 		get : function() {
 			return this._dataStore.length == 0;

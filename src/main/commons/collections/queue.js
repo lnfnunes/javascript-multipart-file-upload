@@ -1,6 +1,7 @@
 function Queue() {
-	BaseObject.call(this);
-	this._dataStore = [];
+	BaseObject.call(this, {
+		_dataStore : []
+	});
 }
 
 Queue.prototype = Object.create(BaseObject.prototype, {

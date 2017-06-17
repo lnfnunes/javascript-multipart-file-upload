@@ -1,46 +1,51 @@
-function XHR(item) {
-	BaseObject.call(this);
-	this.apply(this.item, item);
+function XHR(cfg, xhr) {
+	var config = {
+		method : "",
+		url : "",
+		withCredentials : false,
+		headers : []
+	};
+	
+	BaseObject.prototype.apply.call(this, config, cfg || {});
+	
+	BaseObject.call(this, {
+		_config : config,
+
+		_events : {
+			onSuccess : new Observable(),
+			onProgress : new Observable(),
+			onComplete : new Observable(),
+			onError : new Observable(),
+			onCancel : new Observable()
+		},
+
+		_xhr : xhr || new XMLHttpRequest()
+	});
 }
 
 XHR.prototype = Object.create(BaseObject.prototype, {
 
 	constructor : XHR,
 
-	init : {
-		value : function() {
-			this.xhr = new XMLHttpRequest();
-
-			this.xhr.open(this.item.method, this.item.url, true);
-			this.xhr.withCredentials = this.item.withCredentials;
-
-			this.events.onSuccess = new Observable();
-			this.events.onProgress = new Observable();
-			this.events.onComplete = new Observable();
-			this.events.onError = new Observable();
-			this.events.onCancel = new Observable();
+	config : {
+		get : function() {
+			return this._config;
 		},
-		enumerable : false,
-		configurable : false,
-		writable : true
-	},
-
-	item : {
-		writable : true,
-		configurable : false,
-		value : null
+		configurable : false
 	},
 
 	events : {
-		writable : true,
-		configurable : false,
-		value : {
-			onSuccess : null,
-			onProgress : null,
-			onComplete : null,
-			onError : null,
-			onCancel : null
-		}
+		get : function() {
+			return this._events;
+		},
+		configurable : false
+	},
+
+	xhr : {
+		get : function() {
+			return this._xhr;
+		},
+		configurable : false
 	},
 
 	_isRequestSuccessful : {
@@ -57,15 +62,16 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 
 	_parseHeaders : {
 		value : function(headers) {
-			var parsed = {}, key, val, i;
+			var parsed = {};
 
-			if (!headers)
+			if (!headers) {
 				return parsed;
+			}
 
 			headers.split('\n').forEach(function(item) {
 				var keyValue = item.split(':');
-				key = keyValue[0].trim().toLowerCase();
-				val = keyValue[1].trim().replace(/"/g, '');
+				var key = keyValue[0].trim().toLowerCase();
+				var val = keyValue[1].trim().replace(/"/g, '');
 
 				if (key) {
 					parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
@@ -126,54 +132,51 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 
 	addListeners : {
 		value : function() {
-			var me = this;
+			var scope = this;
 
-			this.xhr.upload.onprogress = function(event) {
-				var progress = Math.round(event.lengthComputable ? event.loaded
-						* 100 / event.total : 0);
-				this._onProgress(me.item, progress);
+			scope.xhr.onprogress = function(event) {
+				var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+				scope._onProgress(scope.config, progress);
 			};
 
-			this.xhr.onload = function() {
+			scope.xhr.onload = function() {
 				if (this.readyState === this.DONE) {
 					var response = JSON.parse(this.responseText);
-					var headers = me
-							._parseHeaders(this.getAllResponseHeaders());
-					var status = '_on' + me.isRequestSuccessful() ? 'Success'
-							: 'Error';
-					me[status](me.item, response, this.status, headers);
-					me._onComplete(me.item, response, this.status, headers);
+					var headers = scope._parseHeaders(this.getAllResponseHeaders());
+					var status = '_on' + scope._isRequestSuccessful() ? 'Success' : 'Error';
+					scope[status](scope.config, response, this.status, headers);
+					scope._onComplete(scope.config, response, this.status, headers);
 				}
 			};
 
-			this.xhr.onerror = function() {
+			scope.xhr.onerror = function() {
 				var response = JSON.parse(this.responseText);
-				var headers = me._parseHeaders(this.getAllResponseHeaders());
-				me._onError(me.item, response, this.status, headers);
-				me._onComplete(me.item, response, this.status, headers);
+				var headers = scope._parseHeaders(this.getAllResponseHeaders());
+				scope._onError(scope.config, response, this.status, headers);
+				scope._onComplete(scope.config, response, this.status, headers);
 			};
 
-			this.xhr.onabort = function() {
+			scope.xhr.onabort = function() {
 				var response = JSON.parse(this.responseText);
-				var headers = me._parseHeaders(this.getAllResponseHeaders());
-				me._onCancel(me.item, response, this.status, headers);
-				me._onComplete(me.item, response, this.status, headers);
+				var headers = scope._parseHeaders(this.getAllResponseHeaders());
+				scope._onCancel(scope.config, response, this.status, headers);
+				scope._onComplete(scope.config, response, this.status, headers);
 			};
-		},
-		enumerable : false,
-		configurable : false,
-		writable : true
+		}
 	},
 
 	send : {
 		value : function(data) {
-			var me = this;
+			var scope = this;
+			
+			scope.xhr.open(scope.config.method, scope.config.url, true);
+			scope.xhr.withCredentials = scope.config.withCredentials;
 
-			this.item.headers.forEach(function(item) {
-				me.xhr.setRequestHeader(item.name, item.value);
+			scope.config.headers.forEach(function(item) {
+				scope.xhr.setRequestHeader(item.name, item.value);
 			});
 
-			this.xhr.send(data);
+			scope.xhr.send(data);
 		},
 		enumerable : false,
 		configurable : false,

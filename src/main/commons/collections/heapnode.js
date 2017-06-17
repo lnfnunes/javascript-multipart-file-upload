@@ -1,8 +1,9 @@
 function HeapNode(items, value, index) {
-	BaseObject.call(this);
-	this._value = value;
-	this._index = index;
-	this._items = items;
+	BaseObject.call(this, {
+		_value : value,
+		_index : index,
+		_items : items
+	});
 }
 
 HeapNode.prototype = Object.create(BaseObject.prototype, {
