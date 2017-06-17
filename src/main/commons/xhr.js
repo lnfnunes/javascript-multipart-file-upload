@@ -1,4 +1,5 @@
 function XHR(cfg, xhr) {
+	
 	var config = {
 		method : "",
 		url : "",
@@ -86,8 +87,8 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 	},
 
 	_onSuccess : {
-		value : function(item, response, status, headers) {
-			this.events.onSuccess.publish(item, response, status, headers);
+		value : function(sender, response, status, headers) {
+			this.events.onSuccess.publish(sender, {response : response, status : status, headers : headers});
 		},
 		enumerable : false,
 		configurable : false,
@@ -95,8 +96,8 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 	},
 
 	_onProgress : {
-		value : function(item, progress) {
-			this.events.onProgress.publish(item, progress);
+		value : function(sender, progress) {
+			this.events.onProgress.publish(sender, progress);
 		},
 		enumerable : false,
 		configurable : false,
@@ -104,8 +105,8 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 	},
 
 	_onComplete : {
-		value : function(item, response, status, headers) {
-			this.events.onComplete.publish(item, response, status, headers);
+		value : function(sender, response, status, headers) {
+			this.events.onComplete.publish(sender, {response : response, status : status, headers : headers});
 		},
 		enumerable : false,
 		configurable : false,
@@ -113,8 +114,8 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 	},
 
 	_onError : {
-		value : function(item, response, status, headers) {
-			this.events.onError.publish(item, response, status, headers);
+		value : function(sender, response, status, headers) {
+			this.events.onError.publish(sender, {response : response, status : status, headers : headers});
 		},
 		enumerable : false,
 		configurable : false,
@@ -122,8 +123,8 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 	},
 
 	_onCancel : {
-		value : function(item, response, status, headers) {
-			this.events.onCancel.publish(item, response, status, headers);
+		value : function(sender, response, status, headers) {
+			this.events.onCancel.publish(sender, {response : response, status : status, headers : headers});
 		},
 		enumerable : false,
 		configurable : false,
@@ -136,31 +137,31 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 
 			scope.xhr.onprogress = function(event) {
 				var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
-				scope._onProgress(scope.config, progress);
+				scope._onProgress(scope, progress);
 			};
 
 			scope.xhr.onload = function() {
 				if (this.readyState === this.DONE) {
 					var response = JSON.parse(this.responseText);
 					var headers = scope._parseHeaders(this.getAllResponseHeaders());
-					var status = '_on' + scope._isRequestSuccessful() ? 'Success' : 'Error';
-					scope[status](scope.config, response, this.status, headers);
-					scope._onComplete(scope.config, response, this.status, headers);
+					var status = scope._isRequestSuccessful() ? '_onSuccess' : '_onError';
+					scope[status](scope, response, this.status, headers);
+					scope._onComplete(scope, response, this.status, headers);
 				}
 			};
 
 			scope.xhr.onerror = function() {
 				var response = JSON.parse(this.responseText);
 				var headers = scope._parseHeaders(this.getAllResponseHeaders());
-				scope._onError(scope.config, response, this.status, headers);
-				scope._onComplete(scope.config, response, this.status, headers);
+				scope._onError(scope, response, this.status, headers);
+				scope._onComplete(scope, response, this.status, headers);
 			};
 
 			scope.xhr.onabort = function() {
 				var response = JSON.parse(this.responseText);
 				var headers = scope._parseHeaders(this.getAllResponseHeaders());
-				scope._onCancel(scope.config, response, this.status, headers);
-				scope._onComplete(scope.config, response, this.status, headers);
+				scope._onCancel(scope, response, this.status, headers);
+				scope._onComplete(scope, response, this.status, headers);
 			};
 		}
 	},

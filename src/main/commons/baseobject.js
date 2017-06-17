@@ -1,6 +1,5 @@
 function BaseObject(cfg) {
-	BaseObject.prototype.apply.call(this, this, cfg || {});
-	BaseObject.prototype.init.call(this);
+	BaseObject.prototype.init.call(this, cfg || {});
 }
 
 BaseObject.prototype = Object.create(null, {
@@ -8,7 +7,8 @@ BaseObject.prototype = Object.create(null, {
 	constructor : BaseObject,
 
 	init : {
-		value : function() {
+		value : function(cfg) {
+			this.apply(this, cfg);
 			this.addListeners();
 		},
 		enumerable : false,
