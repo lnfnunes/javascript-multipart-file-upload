@@ -1,93 +1,93 @@
-describe("A test suite", function() {
-	beforeEach(function() {
-	});
-	afterEach(function() {
-	});
+describe("A test suite", function () {
+  beforeEach(function () {
+  });
+  afterEach(function () {
+  });
 
-	it('should be enqueue values and dequeue success', function() {
-		var queue = new Queue();
+  it('should be enqueue values and dequeue success', function () {
+    var queue = new Queue();
 
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.enqueue(3);
-		queue.enqueue(4);
-		queue.enqueue(5);
-		queue.enqueue(6);
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+    queue.enqueue(5);
+    queue.enqueue(6);
 
-		var dequeue = queue.dequeue();
+    var dequeue = queue.dequeue();
 
-		assert.equal(1, dequeue);
-	});
-	
-	it('should be enqueue values and empty queue success', function() {
-		var queue = new Queue();
+    assert.equal(1, dequeue);
+  });
 
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.enqueue(3);
-		queue.enqueue(4);
-		queue.enqueue(5);
-		queue.enqueue(6);
+  it('should be enqueue values and empty queue success', function () {
+    var queue = new Queue();
 
-		while (!queue.empty) {
-			queue.dequeue()
-		}
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+    queue.enqueue(5);
+    queue.enqueue(6);
 
-		assert.equal(true, queue.empty);
-	});
-	
-	it('should be enqueue values and get front success', function() {
-		var queue = new Queue();
+    while (!queue.empty) {
+      queue.dequeue()
+    }
 
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.enqueue(3);
-		queue.enqueue(4);
-		queue.enqueue(5);
-		queue.enqueue(6);
+    assert.equal(true, queue.empty);
+  });
 
-		var front = queue.front();
+  it('should be enqueue values and get front success', function () {
+    var queue = new Queue();
 
-		assert.equal(1, front);
-	});
-	
-	it('should be enqueue values and get back success', function() {
-		var queue = new Queue();
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+    queue.enqueue(5);
+    queue.enqueue(6);
 
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.enqueue(3);
-		queue.enqueue(4);
-		queue.enqueue(5);
-		queue.enqueue(6);
+    var front = queue.front();
 
-		var back = queue.back();
+    assert.equal(1, front);
+  });
 
-		assert.equal(6, back);
-	});
-	
-	it('should be push values and clear stack success', function() {
-		var queue = new Queue();
+  it('should be enqueue values and get back success', function () {
+    var queue = new Queue();
 
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.enqueue(3);
-		queue.enqueue(4);
-		queue.enqueue(5);
-		queue.enqueue(6);
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+    queue.enqueue(5);
+    queue.enqueue(6);
 
-		queue.clear();
+    var back = queue.back();
 
-		assert.equal(true, queue.empty);
-	});
+    assert.equal(6, back);
+  });
 
-	it('should be push values and length stack success', function() {
-		var queue = new Queue();
+  it('should be push values and clear stack success', function () {
+    var queue = new Queue();
 
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.enqueue(3);
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+    queue.enqueue(5);
+    queue.enqueue(6);
 
-		assert.equal(3, queue.length);
-	});
+    queue.clear();
+
+    assert.equal(true, queue.empty);
+  });
+
+  it('should be push values and length stack success', function () {
+    var queue = new Queue();
+
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+
+    assert.equal(3, queue.length);
+  });
 });
