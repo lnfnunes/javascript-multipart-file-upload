@@ -1,4 +1,4 @@
-describe("A test suite", function () {
+describe("A test suite Heap", function () {
   beforeEach(function () {
   });
   afterEach(function () {
