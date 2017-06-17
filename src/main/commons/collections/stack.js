@@ -1,7 +1,6 @@
 function Stack() {
 	BaseObject.call(this, {
-		_dataStore : [],
-		_top : 0
+		_dataStore : []
 	});
 };
 
@@ -12,7 +11,6 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 	push : {
 		value : function(element) {
 			this._dataStore.push(element);
-			this._top++;
 		},
 		configurable : false
 	},
@@ -20,14 +18,13 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 	pop : {
 		value : function() {
 			return this._dataStore.pop();
-			this._top--;
 		},
 		configurable : false
 	},
 
 	peek : {
 		value : function() {
-			return this._dataStore[this._top - 1];
+			return this._dataStore[this._dataStore.length - 1];
 		},
 		configurable : false
 	},
@@ -48,7 +45,6 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 
 	clear : {
 		value : function() {
-			this._top = 0;
 			this._dataStore = [];
 		},
 		configurable : false
