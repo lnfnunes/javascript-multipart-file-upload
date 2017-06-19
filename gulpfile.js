@@ -16,7 +16,7 @@ config.path = {
 };
 
 gulp.task(
-  `${config.name}/clean`,
+  `clean`,
   function () {
     return gulp
       .src(config.path.dist)
@@ -25,7 +25,7 @@ gulp.task(
 );
 
 gulp.task(
-  `${config.name}/build`, [`${config.name}/clean`],
+  `build`, [`clean`],
   function () {
     return gulp
       .src(config.path.src)
@@ -35,10 +35,12 @@ gulp.task(
 );
 
 gulp.task(
-  `${config.name}/watch`, function () {
+  `watch`, function () {
     return gulp
       .watch(`${config.path.src}**/*.*`, [
         `${config.name}/build`
       ]);
   }
 );
+
+gulp.task('default', ['build']);

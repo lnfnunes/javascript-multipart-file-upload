@@ -5,19 +5,23 @@
 	"main": "dist/s3-multipart-file-upload.min.js",
 	"license": "GPL-3.0",
 	"scripts": {
-		"test": "echo 'Error: no test specified' && exit 1"
+		"test": "./node_modules/.bin/karma start",
+		"start": "npm run test && ./node_modules/.bin/gulp"
 	},
 	"author": "Marcos Tischer Vallim <tischer@gmail.com>",
-	"dependencies": {
-		
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"chai": "^1.9.1",
+		"gulp": "^3.9.1",
+		"gulp-clean": "^0.3.2",
+		"gulp-uglifyjs": "^0.6.2",
 		"karma": "^0.12.17",
 		"karma-chai": "^0.1.0",
 		"karma-mocha": "^0.1.4",
-		"karma-phantomjs-launcher": "^0.1.4",
+		"karma-phantomjs-launcher": "^1.0.4",
 		"karma-verbose-reporter": "^0.0.6",
-		"mocha": "^1.20.1"
+		"mocha": "^1.20.1",
+		"phantomjs-prebuilt": "^2.1.14",
+		"phantomjs2": "^2.2.0"
 	}
 }
