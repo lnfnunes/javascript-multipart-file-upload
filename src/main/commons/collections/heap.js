@@ -1,7 +1,6 @@
 function Heap(compare) {
   BaseObject.call(this, {
     _dataStore : [],
-    _size : 0,
     _compare : compare
   });
 }
@@ -24,13 +23,6 @@ Heap.prototype = Object.create(BaseObject.prototype, {
     writable : true
   },
   
-  _size: {
-    value : undefined,
-    enumerable : false,
-    configurable : false,
-    writable : true
-  },
-
   _swap : {
     value : function (nodeA, nodeB) {
       var temp = nodeA.value;
@@ -85,7 +77,7 @@ Heap.prototype = Object.create(BaseObject.prototype, {
   
   peek : {
     value : function () {
-      if (this._size == 0) {
+      if (this._dataStore.length == 0) {
         return null;
       }
 
@@ -100,12 +92,11 @@ Heap.prototype = Object.create(BaseObject.prototype, {
     value : function () {
       var value = this._dataStore[0].Value;
 
-      this._swap(this._dataStore[0], this._dataStore[this._size - 1]);
+      this._swap(this._dataStore[0], this._dataStore[this._dataStore.length - 1]);
 
       this._dataStore.pop();
-      this._size--;
 
-      if (this._size > 0) {
+      if (this._dataStore.length > 0) {
         this._heapifyDown(0);
       }
 
@@ -118,11 +109,9 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 
   add : {
     value : function (value) {
-      var index = this._size;
+      var index = this._dataStore.length;
 
       this._dataStore.push(new HeapNode(this._dataStore, value, index));
-
-      this._size++;
 
       this._heapifyUp(index);
     },
@@ -133,21 +122,20 @@ Heap.prototype = Object.create(BaseObject.prototype, {
 
   length : {
     get : function () {
-      return this._size;
+      return this._dataStore.length;
     },
     configurable : false
   },
 
   empty : {
     get : function () {
-      return this._size == 0;
+      return this._dataStore.length == 0;
     },
     configurable : false
   },
 
   clear : {
     value : function () {
-      this._size = 0;
       this._dataStore = [];
     },
     configurable : false
