@@ -191,7 +191,10 @@ XHR.prototype = Object.create(BaseObject.prototype, {
         scope._onCancel(scope, response, this.status, headers);
         scope._onComplete(scope, response, this.status, headers);
       };
-    }
+    },
+    enumerable : false,
+    configurable : false,
+    writable : false
   },
 
   send : {
@@ -209,6 +212,6 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   }
 });
