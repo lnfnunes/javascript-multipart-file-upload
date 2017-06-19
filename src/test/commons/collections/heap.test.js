@@ -5,7 +5,7 @@ describe("A test suite Heap", function () {
   });
 
   it('should be add values and peek is minimum success', function () {
-    var heapMin = new Heap(100, function (a, b) {
+    var heapMin = new Heap(function (a, b) {
       return a - b;
     });
 
@@ -25,7 +25,7 @@ describe("A test suite Heap", function () {
   });
 
   it('should be add and remove values and peek is minimum success', function () {
-    var heapMin = new Heap(100, function (a, b) {
+    var heapMin = new Heap(function (a, b) {
       return a - b;
     });
 
@@ -45,7 +45,7 @@ describe("A test suite Heap", function () {
   });
 
   it('should be add values and peek is maximum success', function () {
-    var heapMax = new Heap(100, function (a, b) {
+    var heapMax = new Heap(function (a, b) {
       return b - a;
     });
 
@@ -60,12 +60,12 @@ describe("A test suite Heap", function () {
     heapMax.add(2);
     heapMax.add(1);
     heapMax.add(0);
-
+    
     assert.equal(220020, heapMax.peek());
   });
 
   it('should be add and remove values and peek is maximum success', function () {
-    var heapMax = new Heap(100, function (a, b) {
+    var heapMax = new Heap(function (a, b) {
       return b - a;
     });
 
@@ -85,7 +85,7 @@ describe("A test suite Heap", function () {
   });
 
   it('should be push values and length heap success', function () {
-    var heapMax = new Heap(100, function (a, b) {
+    var heapMax = new Heap(function (a, b) {
       return b - a;
     });
 
@@ -100,7 +100,7 @@ describe("A test suite Heap", function () {
   });
 
   it('should be add values and empty heap success', function () {
-    var heapMax = new Heap(100, function (a, b) {
+    var heapMax = new Heap(function (a, b) {
       return b - a;
     });
 
@@ -119,7 +119,7 @@ describe("A test suite Heap", function () {
   });
 
   it('should be push values and clear heap success', function () {
-    var heapMax = new Heap(100, function (a, b) {
+    var heapMax = new Heap(function (a, b) {
       return b - a;
     });
 

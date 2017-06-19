@@ -8,6 +8,13 @@ Observable.prototype = Object.create(BaseObject.prototype, {
 
   constructor : Observable,
 
+  _handlers : {
+    value : undefined,
+    enumerable : true,
+    configurable : false,
+    writable : true
+  },
+  
   subscribe : {
     value : function (fn) {
       this._handlers.push(fn);

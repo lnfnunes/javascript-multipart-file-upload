@@ -1,17 +1,11 @@
 function XHR(cfg, xhr) {
-
-  var config = {
-    method : "",
-    url : "",
-    withCredentials : false,
-    headers : []
-  };
-
-  BaseObject.prototype.apply.call(this, config, cfg || {});
-
   BaseObject.call(this, {
-    _config : config,
-
+    _config : {
+      method : cfg.method || "",
+      url : cfg.url || "",
+      withCredentials : cfg.withCredentials || false,
+      headers : cfg.headers || []
+    },
     _events : {
       onSuccess : new Observable(),
       onProgress : new Observable(),
@@ -19,8 +13,7 @@ function XHR(cfg, xhr) {
       onError : new Observable(),
       onCancel : new Observable()
     },
-
-    _xhr : xhr || new XMLHttpRequest()
+    _xhr : xhr || new XMLHttpRequest(),    
   });
 }
 
@@ -28,25 +21,25 @@ XHR.prototype = Object.create(BaseObject.prototype, {
 
   constructor : XHR,
 
-  config : {
-    get : function () {
-      return this._config;
-    },
-    configurable : false
+  _config : {
+    value : undefined,
+    enumerable : false,
+    configurable : true,
+    writable : true
   },
 
-  events : {
-    get : function () {
-      return this._events;
-    },
-    configurable : false
+  _events : {
+    value : undefined,
+    enumerable : false,
+    configurable : true,
+    writable : true
   },
 
-  xhr : {
-    get : function () {
-      return this._xhr;
-    },
-    configurable : false
+  _xhr : {
+    value : undefined,
+    enumerable : false,
+    configurable : true,
+    writable : true
   },
 
   _isRequestSuccessful : {
@@ -56,7 +49,7 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   },
 
   _parseHeaders : {
@@ -81,7 +74,7 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   },
 
   _onSuccess : {
@@ -94,7 +87,7 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   },
 
   _onProgress : {
@@ -103,7 +96,7 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   },
 
   _onComplete : {
@@ -116,7 +109,7 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   },
 
   _onError : {
@@ -129,7 +122,7 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
   },
 
   _onCancel : {
@@ -142,7 +135,28 @@ XHR.prototype = Object.create(BaseObject.prototype, {
     },
     enumerable : false,
     configurable : false,
-    writable : true
+    writable : false
+  },
+
+  config : {
+    get : function () {
+      return this._config;
+    },
+    configurable : false
+  },
+
+  events : {
+    get : function () {
+      return this._events;
+    },
+    configurable : false
+  },
+
+  xhr : {
+    get : function () {
+      return this._xhr;
+    },
+    configurable : false
   },
 
   addListeners : {

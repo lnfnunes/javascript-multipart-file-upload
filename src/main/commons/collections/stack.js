@@ -8,6 +8,13 @@ Stack.prototype = Object.create(BaseObject.prototype, {
 
   constructor : Stack,
 
+  _dataStore : {
+    value : undefined,
+    enumerable : true,
+    configurable : false,
+    writable : true
+  },
+  
   push : {
     value : function (element) {
       this._dataStore.push(element);

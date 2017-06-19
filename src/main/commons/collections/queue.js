@@ -8,6 +8,13 @@ Queue.prototype = Object.create(BaseObject.prototype, {
 
   constructor : Queue,
 
+  _dataStore : {
+    value : undefined,
+    enumerable : true,
+    configurable : false,
+    writable : true
+  },
+  
   enqueue : {
     value : function (element) {
       this._dataStore.push(element);

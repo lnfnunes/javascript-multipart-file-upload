@@ -2,7 +2,7 @@ function HeapNode(items, value, index) {
   BaseObject.call(this, {
     _value : value,
     _index : index,
-    _items : items
+    _dataStore : items
   });
 }
 
@@ -10,6 +10,27 @@ HeapNode.prototype = Object.create(BaseObject.prototype, {
 
   constructor : HeapNode,
 
+  _dataStore : {
+    value : undefined,
+    enumerable : true,
+    configurable : false,
+    writable : true
+  },
+  
+  _value: {
+    value : undefined,
+    enumerable : false,
+    configurable : false,
+    writable : true
+  },
+  
+  _index: {
+    value : undefined,
+    enumerable : false,
+    configurable : false,
+    writable : true
+  },
+  
   index : {
     get : function () {
       return this._index;
@@ -19,21 +40,21 @@ HeapNode.prototype = Object.create(BaseObject.prototype, {
 
   parent : {
     get : function () {
-      return this._items[(this._index - 1) / 2 >> 0];
+      return this._dataStore[(this._index - 1) / 2 >> 0];
     },
     configurable : false
   },
 
   left : {
     get : function () {
-      return this._items[(this._index * 2) + 1];
+      return this._dataStore[(this._index * 2) + 1];
     },
     configurable : false
   },
 
   right : {
     get : function () {
-      return this._items[(this._index * 2) + 2];
+      return this._dataStore[(this._index * 2) + 2];
     },
     configurable : false
   },
