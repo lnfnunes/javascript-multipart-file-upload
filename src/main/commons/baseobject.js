@@ -12,8 +12,8 @@ BaseObject.prototype = Object.create(null, {
       this.addListeners();
     },
     enumerable : false,
-    configurable : true,
-    writable : false
+    configurable : false,
+    writable : true
   },
 
   apply : {
