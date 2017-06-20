@@ -1,7 +1,7 @@
 # s3-multipart-file-upload
-### Status (https://travis-ci.org/mvallim/s3-multipart-file-upload)
-### ![Build Status](https://travis-ci.org/mvallim/s3-multipart-file-upload.svg?branch=master)
-S3 Multipart File Upload
+[![Build Status](https://travis-ci.org/mvallim/s3-multipart-file-upload.svg?branch=master)](https://travis-ci.org/mvallim/s3-multipart-file-upload?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mvallim/s3-multipart-file-upload/badge.svg?branch=master)](https://coveralls.io/github/mvallim/s3-multipart-file-upload?branch=master)
+
 
 # Development
 
