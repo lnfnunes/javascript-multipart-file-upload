@@ -1,6 +1,6 @@
 function LinkedList() {
   BaseObject.call(this, {
-    _dataStore : []
+    _size : 0
   });
 }
 
@@ -8,16 +8,23 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   constructor : LinkedList,
 
-  _dataStore : {
+  _head : {
     value : undefined,
-    enumerable : true,
+    enumerable : false,
+    configurable : false,
+    writable : true
+  },
+
+  _tail : {
+    value : undefined,
+    enumerable : false,
     configurable : false,
     writable : true
   },
 
   first : {
     value : function () {
-      return this._dataStore[0];
+      return this._head;
     },
     enumerable : false,
     configurable : false,
@@ -26,7 +33,7 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   last : {
     value : function () {
-      return this._dataStore[this.length - 1];
+      return this._tail;
     },
     enumerable : false,
     configurable : false,
@@ -35,9 +42,18 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   add : {
     value : function (value) {
-      var node = new LinkedListNode(this._dataStore, value, this.length);
+      var node = new LinkedListNode(value);
 
-      this._dataStore.push(node);
+      if (this._head == undefined) {
+        this._head = node;
+        this._tail = node;
+      } else {
+        this._tail.next = node;
+        node.prev = this._tail;
+        this._tail = node;
+      }
+
+      this._size++;
     },
     enumerable : false,
     configurable : false,
@@ -46,17 +62,36 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   addAt : {
     value : function (index, value) {
-      var nodes = this._dataStore.filter(function (node) {
-        return node._index >= index;
-      });
-      
-      nodes.forEach(function(node){
-        node._index++;
-      });
-      
-      var node = new LinkedListNode(this._dataStore, value, index);
+      var node = new LinkedListNode(value);
 
-      this._dataStore.splice(index, 0, node);
+      if (index < 0 || index > this._size) {
+        throw "IndexOutOfBoundsException";
+      } else if (index == 0) {
+        node.next = this._head;
+        this._head.prev = node;
+        this._head = node;
+      } else if (index == this._size - 1) {
+        node.prev = this._tail;
+        this._tail.next = node;
+        this._tail = node;
+      } else {
+        var current = this._head;
+
+        var i = index;
+
+        while (i > 0) {
+          current = current.next;
+          i--;
+        }
+
+        var prev = current.prev;
+        prev.next = node;
+        node.prev = prev;
+        node.next = current;
+        current.prev = node;
+      }
+
+      this._size++;
     },
     enumerable : false,
     configurable : false,
@@ -65,15 +100,25 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   remove : {
     value : function (value) {
-      this._dataStore = this._dataStore.filter(function (node) {
-        return node.value != value;
-      }); 
-      
-      var idx = 0;
-      
-      this._dataStore.forEach(function(node){
-        node._index = idx++;
-      });
+      var current = this._head;
+
+      while (current != null) {
+        if (current.value == value) {
+          var prev = current.prev;
+          var next = current.next;
+
+          if (prev != undefined) {
+            prev.next = current.next;
+          }
+
+          if (next != undefined) {
+            next.prev = current.prev;
+          }
+
+          break;
+        }
+        current = current.next;
+      }
     },
     enumerable : false,
     configurable : false,
@@ -82,15 +127,38 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   removeAt : {
     value : function (index) {
-      var nodes = this._dataStore.filter(function (node) {
-        return node._index > index;
-      });
+      if (index < 0 || index >= this._size) {
+        throw "IndexOutOfBoundsException";
+      } else if (index == 0) {
+        this._head = this._head.next;
 
-      this._dataStore.splice(index, 1);
-      
-      nodes.forEach(function(node){
-        node._index--;
-      });
+        if (this._head != undefined) {
+          this._head.prev = undefined;
+        }
+      } else if (index == this._size - 1) {
+        this._tail = this._tail.prev;
+
+        if (this._tail != undefined) {
+          this._tail.next = undefined;
+        }
+      } else {
+        var current = this._head;
+
+        var i = index;
+
+        while (i > 0) {
+          current = current.next;
+          i--;
+        }
+
+        var prev = current.prev;
+        var next = current.next;
+
+        prev.next = current.next;
+        next.prev = current.prev;
+      }
+
+      this._size--;
     },
     enumerable : false,
     configurable : false,
@@ -99,7 +167,24 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   get : {
     value : function (index) {
-      return this._dataStore[index];
+      if (index < 0 || index >= this._size) {
+        throw "IndexOutOfBoundsException";
+      } else if (index == 0) {
+        return this._head;
+      } else if (index == this._size - 1) {
+        return this._tail;
+      } else {
+        var current = this._head;
+
+        var i = index;
+
+        while (i > 0) {
+          current = current.next;
+          i--;
+        }
+
+        return current;
+      }
     },
     enumerable : false,
     configurable : false,
@@ -108,21 +193,23 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
 
   length : {
     get : function () {
-      return this._dataStore.length;
+      return this._size;
     },
     configurable : false
   },
 
   empty : {
     get : function () {
-      return this._dataStore.length == 0;
+      return this._size == 0;
     },
     configurable : false
   },
 
   clear : {
     value : function () {
-      this._dataStore = [];
+      this._head = undefined;
+      this._tail = undefined;
+      this._size = 0;
     },
     configurable : false
   }

@@ -1,21 +1,12 @@
-function LinkedListNode(dataStore, value, index) {
+function LinkedListNode(value) {
   BaseObject.call(this, {
-    _dataStore : dataStore,
-    _value : value,
-    _index : index
+    _value : value
   });
 }
 
 LinkedListNode.prototype = Object.create(BaseObject.prototype, {
 
   constructor : LinkedListNode,
-
-  _index : {
-    value : undefined,
-    enumerable : false,
-    configurable : false,
-    writable : true
-  },
 
   _value : {
     value : undefined,
@@ -24,9 +15,16 @@ LinkedListNode.prototype = Object.create(BaseObject.prototype, {
     writable : true
   },
 
-  _dataStore : {
+  _next : {
     value : undefined,
-    enumerable : true,
+    enumerable : false,
+    configurable : false,
+    writable : true
+  },
+
+  _prev : {
+    value : undefined,
+    enumerable : false,
     configurable : false,
     writable : true
   },
@@ -40,23 +38,23 @@ LinkedListNode.prototype = Object.create(BaseObject.prototype, {
     },
     configurable : false
   },
-  
-  index : {
-    get : function () {
-      return this._index;
-    }
-  },
 
   next : {
     get : function () {
-      return this._dataStore[this._index + 1];
+      return this._next;
     },
+    set : function (node) {
+      this._next = node;
+    },    
     configurable : false
   },
 
   prev : {
     get : function () {
-      return this._dataStore[this._index - 1];
+      return this._prev;
+    },
+    set : function (node) {
+      this._prev = node;
     },
     configurable : false
   }
