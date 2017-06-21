@@ -22,6 +22,31 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
     writable : true
   },
 
+  iterator : {
+    value : function () {
+      return new LinkedListIterator(this);
+    },
+    enumerable : false,
+    configurable : false,
+    writable : false
+  },
+
+  forEach : {
+    value : function (callback) {
+      var iterator = this.iterator();
+      
+      while (iterator.hasNext()) {
+        var index = iterator.nextIndex();
+        var node = iterator.next();
+        if (typeof callback === 'function')
+          callback(index, node, this);
+      }
+    },
+    enumerable : false,
+    configurable : false,
+    writable : false
+  },
+  
   first : {
     value : function () {
       return this._head;
@@ -102,7 +127,7 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
     value : function (value) {
       var current = this._head;
 
-      while (current != null) {
+      while (current != undefined) {
         if (current.value == value) {
           var prev = current.prev;
           var next = current.next;
@@ -114,6 +139,8 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
           if (next != undefined) {
             next.prev = current.prev;
           }
+
+          this._size--;
 
           break;
         }
@@ -184,6 +211,32 @@ LinkedList.prototype = Object.create(BaseObject.prototype, {
         }
 
         return current;
+      }
+    },
+    enumerable : false,
+    configurable : false,
+    writable : false
+  },
+
+  set : {
+    value : function (index, value) {
+      if (index < 0 || index >= this._size) {
+        throw "IndexOutOfBoundsException";
+      } else if (index == 0) {
+        this._head.value = value;
+      } else if (index == this._size - 1) {
+        this._tail.value = value;
+      } else {
+        var current = this._head;
+
+        var i = index;
+
+        while (i > 0) {
+          current = current.next;
+          i--;
+        }
+
+        current.value = value;
       }
     },
     enumerable : false,
