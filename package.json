@@ -1,6 +1,6 @@
 {
   "name": "javascript-multipart-file-upload",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "JavaScript Multipart File Upload",
   "main": "dist/javascript-multipart-file-upload.min.js",
   "license": "GPL-3.0",
