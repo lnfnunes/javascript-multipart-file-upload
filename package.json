@@ -1,8 +1,8 @@
 {
-  "name": "s3-multipart-file-upload",
+  "name": "javascript-multipart-file-upload",
   "version": "0.0.0",
-  "description": "S3 Multipart File Upload",
-  "main": "dist/s3-multipart-file-upload.min.js",
+  "description": "JavaScript Multipart File Upload",
+  "main": "dist/javascript-multipart-file-upload.min.js",
   "license": "GPL-3.0",
   "scripts": {
     "karma": "./node_modules/.bin/karma start",
@@ -16,7 +16,7 @@
     "Rafael Malveis Ximenes <rmalveis@gmail.com>"
   ],
   "dependencies": {
-    "javascript-collections": "^0.0.1"
+    "javascript-collections": "^0.0"
   },
   "devDependencies": {
     "chai": "^4.0.2",

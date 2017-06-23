@@ -1,5 +1,23 @@
 language: node_js
 node_js:
-  - "6"
-  - "7"
-after_success: coveralls < coverage/report-lcov/lcov.info
+- '6'
+after_success:
+- coveralls < coverage/report-lcov/lcov.info
+before_deploy:
+- git config --global user.email ${EMAIL}
+- git config --global user.name ${USER}
+- git config --global push.default matching
+deploy:
+  provider: npm
+  email: "$EMAIL"
+  api_key: "$NPM_API_KEY"
+  skip_cleanup: true
+  on:
+    repo: mvallim/javascript-multipart-file-upload
+    node: '6'
+    tags: true
+env:
+  global:
+  - secure: cQ7K3xMmYZyZXTZSC6nv5g76isapqY4rvqmsSlQyUedpcjEGM/AxjyOuixdjgLOOhg/VoqULFiLb5i/1Hsho+W7LHK/N//x6wl0fN0C/1uR/FsAgGtPzGAPAC/d7ijSi1tDgReckLt/t2ABOlFy+6LJD4TqZvLqh8w0an8ZdLtiEPPNvNpjI3zFXSJMNPtKo0FQEQ2YN6AOBFGYvqVWT8AlraqvKkCQVSzycAVpiCOAqN+ehrxqMqnBYukop1WQxceTmyOndXctL0MObkWq6Habc30u9znfx8p3AUXTUFniERmirXfZGhAz7OUXOlsMCQL+aLVWUD06AAwEgQVWK8Wb7bSOPSxTfBUvET/AUINqyxUZcoOkcdtmpbd2agPiS7zzEKXyRndcOrOriJS2tTOBDiP+YftuEJ31wUUsFWamO2YIZAJNbzWYA/bFzLs7/hr/a1oWjAnTPkPBfSlHHfx9JxKla9/wAenjmRKOpcKvalbcN9mNzRHhBz2trCbWPmvv8SE+ROAWxVy7o27E0ATk1C326klyN7lVv+p1rTpXXQcj8CDBAgCnSqyizO8qQFu8kIyCP1LbZXiJ7tDkW3UyOijj+Qpdf2IYJvx2+V+1b19Q+TTvqTiekhXATnNQOHx58v1rW/r7hU7DpzRvEQPsJP7RiiPioFYC6gxKj9hQ=
+  - secure: hm57sAu1zwiJpn9hh2lvOuddYH7/0J9NQ5LbcNIf1MvYJ3FrHOEvWSWakdpXL3HHrkso2/UUc17GRc3+SLNLJDRvXaUXQR5IDXc5hWIzQg4QwytqZpkQHj0tv2UCSmIeUjRkK0PHIhPyLPLCkhqfIL05m1TB2ivIfwbaPrllu74AgCUG1Gc9ejoNXPNmdyoNqbO9cvl+QyzJYocXeiG7CS1mbHh2nlKysF46BqCJdoRm/N1uT4Ot3dGQjrCMmtfA3zhRnblJYxcs1NsVBgi9fkobSO8kJNKX1a5mHpmbUItHVy1ue+ijwcEjqYjXVMgv2zz5tDfrgZ5tVGNWCVCB32xJpdwnhcEJYh9pTlOGio0mcrYZzjlx4B11fSDNRsoVHGuGh+/cY0TfV/QApRp5EJuTzKbEy3CJlUBxmM/VMOIQ6gfBd613x2z5jPCEfkyHMZCv8yEdbdJ7cdvjeAZQX8+aJpi3Ab1G9zV6C+bjOMhGcoBW0l2HjqIrAXHXw6G1LMK7ZwYetBjdasTawwyk4q3DIz9IGAAgi6qp6O4KuVFZJakqNX9lqfnhqiS1I5XehymBn5Of9lzFRd+h1OPeWzxl0PgVGKOsNAv7Y5FPRmyydlqKYZ/hAPk2GW5BwzQYe5iQbrDrbqzmuXBfezW/IM9jZ4MYw8DW7tZ2ecLzt0o=
+  - secure: GGk6hKzd9v/ZLgyB2FvJFnLWL7mzto7TRuEMm2q2HePvzSJUpuBjDFBtMC9W/a5WZb0+7Puz6lUdBRocGaDcUlnjHAxNfYR0iwsaOHqGiDxTpbf/ZOdkQZL65ukBdGS2KbkLaW+0iGR8wMfLR7/nISpeX4+5Yu9fszeqFDaRYL3J1zrYIk5cX3VG1tDV9Tmsw+LFDUQOVAKiSXPuDgEEaNIOJYDAiqFVfPaz08JQ2iHMKzSjnf9UhPkXFtxlv4nu2rbo50ORh+XOn3LoDsi+/yWyVnZ2jsmoRMwNU/MyMx5lMY+0T1eMA6CeXfyOmadd5qlp5HTLACB7wlujN1l1ELPsoSEYgetbbYsCmZRq2ohy5W4n37KjXTmek19R09Xkuf60EHvKZgPHyia3QcfQoB8eIXr+EpeHWEp3FE8H0d6r5Guiv8gkzJRgrkBLn6nNwRSjzMg3ihrOmVMqfS355CsByK1+m+smAHUQ6RibB8tzh6Bk9WEfn+T5frXMEnm9wJa9IVGZxr2iRXOYh6FpT13emJLHPfnFCyJ01V3XcVwfvExWc61Mx4uCErqSHelaC0ftiwke4QQPs1yFRVL7SCCaW3945Eb4IgSfDAewkwNrIuKZCfMrqW6fB2lH/y3PPLuzC3LOaJfdhT/qfD+8oS9jrtccw7D3UhR3WL+RhkY=

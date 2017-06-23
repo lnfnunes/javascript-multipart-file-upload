@@ -1,6 +1,8 @@
-# s3-multipart-file-upload
-[![Build Status](https://travis-ci.org/mvallim/s3-multipart-file-upload.svg?branch=master)](https://travis-ci.org/mvallim/s3-multipart-file-upload)
-[![Coverage Status](https://coveralls.io/repos/github/mvallim/s3-multipart-file-upload/badge.svg?branch=master)](https://coveralls.io/github/mvallim/s3-multipart-file-upload?branch=master)
+# javascript-multipart-file-upload
+[![npm version](https://badge.fury.io/js/javascript-multipart-file-upload.svg)](https://badge.fury.io/js/javascript-multipart-file-upload)
+[![Build Status](https://travis-ci.org/mvallim/javascript-multipart-file-upload.svg?branch=master)](https://travis-ci.org/mvallim/javascript-multipart-file-upload)
+[![Coverage Status](https://coveralls.io/repos/github/mvallim/javascript-multipart-file-upload/badge.svg?branch=master)](https://coveralls.io/github/mvallim/javascript-multipart-file-upload?branch=master)
+
 
 
 # Development
