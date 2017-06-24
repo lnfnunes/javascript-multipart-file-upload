@@ -21,9 +21,9 @@ Unit test files are located at **/src/test** folder.
 
 Both above scripts "_start_ and _test_" will generate the Code coverage report and will show instantly on the console a percentage summary of code-coverage.
 
-Additionaly will be generated a **/coverage** folder with HTML, LCOV extra formats.
+Additionaly will be also generated a **/coverage** folder with a LCOV extra formats.
 
-You can open /coverage/report-html into browser to have a detailed view file by file.
+You can open /coverage/report-lcov/lcov-report into browser to have a detailed view file by file.
 
 ## License
 [GNU License](LICENSE) © Marcos Tischer Vallim
